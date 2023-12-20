@@ -1,10 +1,9 @@
 ---
-  - name: deploy front-end
-    hosts: front-end
-    tasks:
+ - name: deploy front-end
+   hosts: front-end
+   tasks:
     - name: install web nginx server
-      packages:
+      package:
         name: nginx
         state: present
       become: yes
-      
