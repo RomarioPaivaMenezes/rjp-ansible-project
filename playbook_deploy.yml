@@ -1,9 +1,32 @@
 ---
  - name: deploy front-end
    hosts: frontend
+   become: yes
    tasks:
     - name: install web nginx server
       package:
         name: nginx
         state: present
-      become: yes
+    - name: Copying frontend artifacts 
+      copy:
+      src:  app-src/public
+      dest: /srv/frontend/
+      setype: httpd_sys_content_t
+    - name: Nginx service must be on
+      service:
+        name: nginx
+        enabled: yes
+        state: started
+    - name: Setting Nginx to frontend
+      template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+      notify:
+      - Restart nginx service
+    handlers:
+    - name: Restart nginx service
+      service:
+        name: nginx
+        state: restarted
