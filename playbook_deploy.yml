@@ -27,7 +27,7 @@
         group: root
     - notify:
       - Restart nginx service
-    handlers:
+   handlers:
     - name: Restart nginx service
        service:
          name: nginx
