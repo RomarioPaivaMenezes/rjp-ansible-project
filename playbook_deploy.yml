@@ -1,6 +1,6 @@
 ---
  - name: deploy front-end
-   hosts: front-end
+   hosts: frontend
    tasks:
     - name: install web nginx server
       package:
