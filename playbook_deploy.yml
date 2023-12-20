@@ -9,7 +9,7 @@
         state: present
     - name: Copying frontend artifacts 
       copy:
-        src:  app-src/public
+        src:  /home/project_test/rjp-ansible-project/app-src/public
         dest: /srv/frontend/
         setype: httpd_sys_content_t
       notify:
