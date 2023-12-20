@@ -12,6 +12,8 @@
       src:  app-src/public
       dest: /srv/frontend/
       setype: httpd_sys_content_t
+    notify:
+    - Restart nginx service
     - name: Nginx service must be on
       service:
         name: nginx
