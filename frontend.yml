@@ -1,0 +1,6 @@
+---
+ - name: deploy front-end
+   hosts: frontend
+   become: yes
+   roles:
+   - frontend

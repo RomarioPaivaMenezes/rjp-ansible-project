@@ -1,7 +1,7 @@
-[frontend]
-ServerA   ansible_host=172.234.41.187 ansible_user=root ansible_password=qQu6XmGEs5@42g7
-
 [backend]
+ServerA   ansible_host=172.234.41.141 ansible_user=root ansible_password=qQu6XmGEs5@42g7
+
+[frontend]
 ServerB   ansible_host=172.234.41.141 ansible_user=root ansible_password=qQu6XmGEs5@42g7
 
 [prod:children]

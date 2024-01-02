@@ -1,0 +1,40 @@
+---
+- name: Remove components
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Stopping services
+    service:
+      name: "{{ item }}"
+      state: stopped
+      enabled: no
+    loop:
+    - deno-backend
+    - nginx
+    ignore_errors: yes
+  - name: Remove dependencies (packages)
+    package:
+      name:
+      - nginx
+      - unzip
+      state: absent
+  - name: Remove dependencies (binaries)
+    file:
+      path: /usr/local/bin/deno
+      state: absent
+  - name: Remove traces of Nginx
+    file:
+      path: /etc/nginx
+      state: absent
+  - name: Remove systemd configuration
+    file:
+      path: /etc/systemd/system/deno-backend.service
+      state: absent
+  - name: Remove deployment directories
+    file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+    - /srv/frontend
+    - /srv/backend
